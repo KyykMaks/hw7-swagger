@@ -14,6 +14,7 @@ tags:
     description: Auth operations.
 servers:
   - url: http://127.0.0.1:3000
+  - url: https://hw7-swagger-vym3.onrender.com
 paths:
   /contacts:
     get:
