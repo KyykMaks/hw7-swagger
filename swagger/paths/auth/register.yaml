@@ -1,0 +1,59 @@
+tags:
+  - Auth
+summary: Register a new user
+operationId: registerUser
+description: Create a new account
+security: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - password
+        properties:
+          name:
+            type: string
+            example: "Maks Maks"
+          email:
+            type: string
+            format: email
+            example: "Maks Maks@gmail.com"
+          password:
+            type: string
+            format: password
+            example: "StrongPassword123"
+responses:
+  '201':
+    description: User registered successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully registered!
+            data:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "65e4decdd286b30065d54af9"
+                email:
+                  type: string
+                  example: "john.doe@example.com"
+  '400':
+    description: Bad request
+  '401':
+    $ref: '../../components/responses/401.yaml'

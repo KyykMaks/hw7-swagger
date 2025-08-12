@@ -1,0 +1,21 @@
+tags:
+  - Contacts
+summary: Create a contact
+operationId: createContact
+description: Create a new contact with the provided details
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        $ref: ../../components/schemas/contact.yaml
+responses:
+  '201':
+    description: Contact created successfully
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/contact.yaml
+  '404':
+    description: Student not found
