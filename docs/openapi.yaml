@@ -13,7 +13,7 @@ tags:
   - name: Auth
     description: Auth operations.
 servers:
-  - url: https://hw7-swagger-vym3.onrender.com
+  - url: https://hw7-swagger-1-by9n.onrender.com
 paths:
   /contacts:
     get:
