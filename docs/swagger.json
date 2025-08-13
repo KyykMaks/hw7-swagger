@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "http://127.0.0.1:3000"
+      "url": "https://hw7-swagger-vym3.onrender.com"
     }
   ],
   "tags": [
@@ -95,25 +95,59 @@
               "type": "boolean"
             },
             "example": true
-          },
-          {
-            "in": "query",
-            "name": "userId",
-            "schema": {
-              "type": "string"
-            },
-            "example": "65e4decdd286b30065d54af9"
           }
         ],
         "responses": {
-          "201": {
-            "description": "Successfully retrieved list of contacts",
+          "200": {
+            "description": "Successfully retrieved list of contact",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/contact"
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact found successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/contact"
+                          }
+                        },
+                        "page": {
+                          "type": "integer",
+                          "example": 2
+                        },
+                        "perPage": {
+                          "type": "integer",
+                          "example": 4
+                        },
+                        "totalItems": {
+                          "type": "integer",
+                          "example": 6
+                        },
+                        "totalPages": {
+                          "type": "integer",
+                          "example": 2
+                        },
+                        "hasPreviousPage": {
+                          "type": "boolean",
+                          "example": true
+                        },
+                        "hasNextPage": {
+                          "type": "boolean",
+                          "example": false
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -140,7 +174,44 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/contact"
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Maks Maks"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "Maks@gmail.com"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+380671234567"
+                  },
+                  "contactType": {
+                    "type": "string",
+                    "enum": [
+                      "work",
+                      "home",
+                      "personal"
+                    ],
+                    "example": "work"
+                  },
+                  "isFavourite": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "photo": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Contact's photo file"
+                  }
+                },
+                "required": [
+                  "name",
+                  "email",
+                  "phone"
+                ]
               }
             }
           }
@@ -151,7 +222,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/contact"
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact created successfully"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/contact"
+                    }
+                  }
                 }
               }
             }
@@ -188,11 +272,24 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved contact",
+            "description": "Contact updated successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/contact"
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact updated successfully"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/contact"
+                    }
+                  }
                 }
               }
             }
@@ -231,7 +328,39 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/contact"
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Maks Maks"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "Maks@gmail.com"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+380671234567"
+                  },
+                  "contactType": {
+                    "type": "string",
+                    "enum": [
+                      "work",
+                      "home",
+                      "personal"
+                    ],
+                    "example": "work"
+                  },
+                  "isFavourite": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "photo": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Contact's photo file"
+                  }
+                }
               }
             }
           }
@@ -242,7 +371,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/contact"
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact updated successfully"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/contact"
+                    }
+                  }
                 }
               }
             }
@@ -276,7 +418,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Contact deleted successfully"
           },
           "401": {
@@ -506,6 +648,7 @@
           "photo": {
             "type": "string",
             "description": "Link to contact's photo",
+            "format": "binary",
             "example": "https://res.cloudinary.com/demo/image/upload/photo.png"
           },
           "userId": {

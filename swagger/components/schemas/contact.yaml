@@ -33,6 +33,7 @@ properties:
   photo:
     type: string
     description: "Link to contact's photo"
+    format: binary
     example: "https://res.cloudinary.com/demo/image/upload/photo.png"
   userId:
     type: string
