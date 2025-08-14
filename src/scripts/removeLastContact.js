@@ -7,9 +7,6 @@ const contacts = await readContacts();
 if (contacts.length > 0) {
     contacts.pop();
     await writeContacts(contacts);
-}else {
-    console.log("Non");
-
 }
 };
 removeLastContact();
